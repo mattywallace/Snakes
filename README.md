@@ -26,7 +26,7 @@ The user is able to click on their own profile to see their added snakes
 ------------------WireFrames--------------------
 
 
-[WireFrames]: https://photos.app.goo.gl/ePprr2Z4QtsSumxe7
+[WireFrames](https://photos.app.goo.gl/ePprr2Z4QtsSumxe7)
 
 
 
