@@ -1,6 +1,6 @@
 ----------USER STORIES---------------
 
-User can click on the login button or the signe up button 
+User can click on the login button or the sign up button 
 
 User adds a username and password to create a profile
 
@@ -23,5 +23,8 @@ The user can click on the delete snake button and the snake will be deleted
 The user is able to click on their own profile to see their added snakes
 
 
+------------------WireFrames--------------------
 
+
+https://photos.google.com/album/AF1QipMlHUzZrJnPLIVXEqs8gUok0m9ZTHLWpyJyK6Cl
 
