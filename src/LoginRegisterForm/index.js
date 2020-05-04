@@ -4,23 +4,13 @@ import '../index.css'
 
 
 export default class LoginRegisterForm extends Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		this.state = {
 			email:'',
 			username:'',
-			passsord:'',
-			action: 'Login'
-		}
-	}
-
-	switchForm = () => {
-		if(this.state.action === "Login") {
-			this.setState({action: 'Register'})
-			console.log('switched from login to register');
-		} else {
-			this.setState({action: 'Login'})
-			console.log('switched from register to login');
+			password:'',
+			occupation: ''	
 		}
 	}
 
@@ -32,16 +22,22 @@ export default class LoginRegisterForm extends Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault()
-		console.log(`You are trying to ${this.state.action.toLowerCase()} with the following credentials`)
+		console.log(`You are trying to ${this.props.action.toLowerCase()} with the following credentials`)
 		console.log(this.state);
+
+		if (this.props.action === 'Register') {
+			this.props.register(this.state)
+		} else {
+			this.props.login(this.state)
+		}
 	}
 	render() {
 		return (
 			<React.Fragment>
-			<h2> {this.state.action} here </h2>
+			<h2> {this.props.action} here </h2>
 				<Form onSubmit={this.handleSubmit}>
 				{
-					this.state.action === "Register"
+					this.props.action === "Register"
 					&&
 					<React.Fragment>
 						<Label>Username:</Label>
@@ -50,6 +46,14 @@ export default class LoginRegisterForm extends Component {
 							name='username'
 							placeholder="Enter Username"
 							value={this.state.username}
+							onChange={this.handleChange}
+						/>
+						<Label>Occupation</Label>
+						<Form.Input
+							type='text'
+							name='occupation'
+							placeholder="What do you do for a living?"
+							value={this.state.occupation}
 							onChange={this.handleChange}
 						/>
 					</React.Fragment>
@@ -71,20 +75,21 @@ export default class LoginRegisterForm extends Component {
 						onChange={this.handleChange}
 					/>
 					<Button type='submit'>
-					{this.state.action === "Login" ? "Log in" : "Register"}
+					{this.props.action === "Login" ? "Log in" : "Register"}
 					</Button>
 				</Form>
 				{
-					this.state.action === 'Login'
+					this.props.action === 'Login'
 					?
 					<p> 
-						If you need an account you can sign up <span className='fake-link' onClick={this.switchForm}>Here</span>
+						If you need an account you can sign up <span className='fake-link' onClick={this.props.switchForm}>Here</span>
 					</p>
 					:
 					<p>
-						Already have an account? log in <span className='fake-link' onClick={this.swicthForm}>Here</span>
+						Already have an account? log in <span className='fake-link' onClick={this.props.switchForm}>Here</span>
 					</p>
 				}
+
 			</React.Fragment>
 		)
 	}
