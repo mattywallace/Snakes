@@ -1,18 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
 import SnakeContainer from './SnakeContainer'
+import LoginRegisterForm from './LoginRegisterForm'
 import './App.css';
 
 
-function App() {
-  console.log(process.env);
-  return (
-    <div className="App">
-    <SnakeContainer />
-   
+export default class App extends Component {
+	constructor() {
+		super()
+		this.state = {
+			loggedIn: false,
+			loggedInUserEmail:''
+
+		}
+	}
+	render() {
+  	return (
+   	 <div className="App">
+   	 {
+   	 	this.state.loggedIn
+   	 	?
+   	 	<SnakeContainer />
+   	 	:
+   	 	<LoginRegisterForm />
+   	 }
     </div>
   );
+ }
 }
 
-export default App;
+
+
 
 
