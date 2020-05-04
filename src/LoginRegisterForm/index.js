@@ -20,14 +20,26 @@ export default class LoginRegisterForm extends Component {
 			console.log('switched from login to register');
 		} else {
 			this.setState({action: 'Login'})
-			console.log('switched from regeister to login');
+			console.log('switched from register to login');
 		}
+	}
+
+	handleChange = (event) => {
+		this.setState({
+			[event.target.name]: event.target.value
+		})
+	}
+
+	handleSubmit = (event) => {
+		event.preventDefault()
+		console.log(`You are trying to ${this.state.action.toLowerCase()} with the following credentials`)
+		console.log(this.state);
 	}
 	render() {
 		return (
 			<React.Fragment>
 			<h2> {this.state.action} here </h2>
-				<Form>
+				<Form onSubmit={this.handleSubmit}>
 				{
 					this.state.action === "Register"
 					&&
@@ -38,22 +50,25 @@ export default class LoginRegisterForm extends Component {
 							name='username'
 							placeholder="Enter Username"
 							value={this.state.username}
+							onChange={this.handleChange}
 						/>
 					</React.Fragment>
 				}
 					<Label>Email</Label>
 					<Form.Input
-						type='text'
+						type='email'
 						name='email'
 						placeholder="Enter Email Address"
 						value={this.state.email}
+						onChange={this.handleChange}
 					/>
 					<Label>Password</Label>
 					<Form.Input
-						type='text'
+						type='password'
 						name='password'
 						placeholder="Enter Password"
 						value={this.state.password}
+						onChange={this.handleChange}
 					/>
 					<Button type='submit'>
 					{this.state.action === "Login" ? "Log in" : "Register"}
@@ -70,8 +85,6 @@ export default class LoginRegisterForm extends Component {
 						Already have an account? log in <span className='fake-link' onClick={this.swicthForm}>Here</span>
 					</p>
 				}
-
-				
 			</React.Fragment>
 		)
 	}
