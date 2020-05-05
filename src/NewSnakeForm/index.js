@@ -14,6 +14,12 @@ export default class NewSnakeForm extends Component {
 			added_by:''
 		}
 	}
+
+	handleChange = (event) => {
+		this.setState({
+			[event.target.name]: event.target.value
+		})
+	}
 	render() {
 		return (
 		<Segment>
@@ -25,6 +31,7 @@ export default class NewSnakeForm extends Component {
 					name='species'
 					value={this.state.species}
 					placeholder='Enter a species'
+					onChange={this.handleChange}
 				/>
 				<Label>Family</Label>
 				<Form.Input
@@ -32,6 +39,7 @@ export default class NewSnakeForm extends Component {
 					name='family'
 					value={this.state.family}
 					placeholder='Enter a family'
+					onChange={this.handleChange}
 				/>
 				<Label>Average size</Label>
 				<Form.Input
@@ -39,6 +47,7 @@ export default class NewSnakeForm extends Component {
 					name='average_size'
 					value={this.state.average_size}
 					placeholder='Enter the size im meters'
+					onChange={this.handleChange}
 				/>
 				<Label>Venomous</Label>
 				<Form.Input
@@ -46,6 +55,7 @@ export default class NewSnakeForm extends Component {
 					name='venomous'
 					value={this.state.venomous}
 					placeholder='Enter Yes if venomous: No if not'
+					onChange={this.handleChange}
 				/>
 				<Label>Description</Label>
 				<Form.Input
@@ -53,6 +63,7 @@ export default class NewSnakeForm extends Component {
 					name='description'
 					value={this.state.description}
 					placeholder='Enter a description'
+					onChange={this.handleChange}
 				/>
 				<Label>picture</Label>
 				<Form.Input
@@ -60,6 +71,7 @@ export default class NewSnakeForm extends Component {
 					name='picture'
 					value={this.state.picture}
 					placeholder='Enter image of snake'
+					onChange={this.handleChange}
 				/>
 				<Label>Added By</Label>
 				<Form.Input
@@ -67,6 +79,7 @@ export default class NewSnakeForm extends Component {
 					name='added_by'
 					value={this.state.added_by}
 					placeholder='Enter your name'
+					onChange={this.handleChange}
 				/>
 			<Button type='Submit'>Create Snake</Button>
 			</Form>
