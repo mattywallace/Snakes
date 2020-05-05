@@ -81,9 +81,9 @@ export default class SnakeContainer extends Component {
 			console.error(error)
 		}
 	}
-
-
-	
+	editSnake = (idOfSnakeToEdit) => {
+		console.log(' you are tyrin gto edit this snake', idOfSnakeToEdit);
+	} 
 	render() {
 		return(
 			<React.Fragment>
@@ -91,7 +91,8 @@ export default class SnakeContainer extends Component {
 				<SnakeList 
 					snakes={this.state.snakes}
 					deleteSnake={this.deleteSnake}
-					/>
+					editSnake={this.editSnake}
+				/>
 				<NewSnakeForm createSnake={this.createSnake}/>
 			</React.Fragment>
 		)

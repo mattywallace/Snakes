@@ -28,6 +28,13 @@ export default function SnakeList(props) {
 				<Card.Content textAlign={"center"}>	
 					<Button
 						basic
+						color='green'
+						onClick={ () => props.editSnake(snake.id) }
+					>
+						Edit {snake.species} Description
+					</Button>
+					<Button
+						basic
 						color='red'
 						onClick={ () => props.deleteSnake(snake.id) }
 					>
