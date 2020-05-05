@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import SnakeList from '../SnakeList'
+import NewSnakeForm from '../NewSnakeForm'
 
 export default class SnakeContainer extends Component {
 	constructor(props) {
@@ -25,6 +26,9 @@ export default class SnakeContainer extends Component {
 			console.log('here is the response from the fetch call:');
 			console.log(snakesResponse);
 			const snakesJson = await snakesResponse.json()
+			this.setState({
+				snakes: snakesJson.data
+			})
 			console.log('here is the data we got in getSnakes in SnakeContainer:');
 			console.log(snakesJson);
 		} catch (err) {
@@ -35,7 +39,8 @@ export default class SnakeContainer extends Component {
 		return(
 			<React.Fragment>
 				<h2> Snake Container </h2>
-				<SnakeList />
+				<SnakeList snakes={this.state.snakes}/>
+				<NewSnakeForm />
 			</React.Fragment>
 		)
 	}

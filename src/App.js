@@ -12,9 +12,9 @@ export default class App extends Component {
 			loggedIn: false,
 			loggedInUserEmail:'',
 			action: 'Login'
-
 		}
 	}
+	
 	switchForm = () => {
 		if(this.state.action === "Login") {
 			this.setState({action: 'Register'})
@@ -24,6 +24,7 @@ export default class App extends Component {
 			console.log('switched from register to login');
 		}
 	}
+	
 	register = async (registerInfo) => {
 		const url = process.env.REACT_APP_API_URL + "/api/v1/users/register"
 		console.log(url, 'this is the url');
@@ -54,6 +55,7 @@ export default class App extends Component {
 		}
 	}
 
+	
 	login = async (loginInfo) => {
 		const url = process.env.REACT_APP_API_URL + '/api/v1/users/login'
 		try {
@@ -81,10 +83,12 @@ export default class App extends Component {
 
 	}
 	
+	
 	logout = () => {
 		console.log("logout");
 	}
 
+	
 	render() {
   	return (
    	 <div className="App">
