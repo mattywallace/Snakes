@@ -35,10 +35,33 @@ export default class SnakeContainer extends Component {
 			console.error("error retrieving snake data err")
 		}
 	}
-	createSnake = (snakeToAdd) => {
+	createSnake = async (snakeToAdd) => {
 		console.log('here is the snake you are tyring to add');
 		console.log(snakeToAdd);
+		try {
+			const url = process.env.REACT_APP_API_URL + "/api/v1/snakes/"
+			const createSnakeResponse = await fetch(url, {
+				credentials: 'include',
+				method:'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(snakeToAdd)
+
+			})
+			const createSnakeJson = await createSnakeResponse.json()
+			console.log(createSnakeJson);
+			if(createSnakeResponse.status === 201) {
+				this.setState({
+					snakes: [...this.state.snakes, createSnakeJson.data]
+				})
+			}
+		} catch(error) {
+			console.error("error adding snake");
+			console.error(error)
+		}
 	}
+	
 	render() {
 		return(
 			<React.Fragment>

@@ -7,6 +7,7 @@ export default class NewSnakeForm extends Component {
 		this.state = {
 			species:'',
 			family:'',
+			habitat:'',
 			average_size:'',
 			venomous:'',
 			description:'',
@@ -24,6 +25,16 @@ export default class NewSnakeForm extends Component {
 	handleSubmit = (event) => {
 	event.preventDefault()
 	this.props.createSnake(this.state)
+	this.setState({
+			species:'',
+			family:'',
+			habitat:'',
+			average_size:'',
+			venomous:'',
+			description:'',
+			picture:'',
+			added_by:''
+	})
 }
 	render() {
 		return (
@@ -52,6 +63,14 @@ export default class NewSnakeForm extends Component {
 					name='average_size'
 					value={this.state.average_size}
 					placeholder='Enter the size im meters'
+					onChange={this.handleChange}
+				/>
+				<Label>Habitat</Label>
+				<Form.Input
+					type='text'
+					name='habitat'
+					value={this.state.habitat}
+					placeholder='Enter the habitat'
 					onChange={this.handleChange}
 				/>
 				<Label>Venomous</Label>
