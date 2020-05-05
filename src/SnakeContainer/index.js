@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import SnakeList from '../SnakeList'
 import NewSnakeForm from '../NewSnakeForm'
+import EditSnakeModel from '../EditSnakeModel'
 
 export default class SnakeContainer extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			snakes:[]
+			snakes:[],
+			idOfSnakeToEdit: -1
 		}
 	}
 	
@@ -83,6 +85,9 @@ export default class SnakeContainer extends Component {
 	}
 	editSnake = (idOfSnakeToEdit) => {
 		console.log(' you are tyrin gto edit this snake', idOfSnakeToEdit);
+		this.setState({
+			idOfSnakeToEdit: idOfSnakeToEdit
+		})
 	} 
 	render() {
 		return(
@@ -93,6 +98,7 @@ export default class SnakeContainer extends Component {
 					deleteSnake={this.deleteSnake}
 					editSnake={this.editSnake}
 				/>
+				{this.state.idOfSnakeToEdit !== -1 && <EditSnakeModel />}
 				<NewSnakeForm createSnake={this.createSnake}/>
 			</React.Fragment>
 		)
