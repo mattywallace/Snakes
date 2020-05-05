@@ -10,8 +10,8 @@ export default class EditSnakeModel extends Component {
 			habitat:'',
 			average_size:'',
 			venomous:'',
-			description:'',
-			picture:'',
+			description:props.snakeToEdit.description,
+			picture:props.snakeToEdit.picture,
 			added_by:''
 		}
 	}

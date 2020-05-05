@@ -98,7 +98,13 @@ export default class SnakeContainer extends Component {
 					deleteSnake={this.deleteSnake}
 					editSnake={this.editSnake}
 				/>
-				{this.state.idOfSnakeToEdit !== -1 && <EditSnakeModel />}
+				{
+					this.state.idOfSnakeToEdit != -1
+					&&
+					<EditSnakeModel
+						snakeToEdit={this.state.snakes.find((snake) => snake.id === this.state.idOfSnakeToEdit)}
+					/>
+				}
 				<NewSnakeForm createSnake={this.createSnake}/>
 			</React.Fragment>
 		)
