@@ -20,11 +20,16 @@ export default class NewSnakeForm extends Component {
 			[event.target.name]: event.target.value
 		})
 	}
+
+	handleSubmit = (event) => {
+	event.preventDefault()
+	this.props.createSnake(this.state)
+}
 	render() {
 		return (
 		<Segment>
 			<h3> Add a new Snake:</h3>
-			<Form>
+			<Form onSubmit={this.handleSubmit}>
 				<Label>Species</Label>
 				<Form.Input
 					type='text'

@@ -35,12 +35,16 @@ export default class SnakeContainer extends Component {
 			console.error("error retrieving snake data err")
 		}
 	}
+	createSnake = (snakeToAdd) => {
+		console.log('here is the snake you are tyring to add');
+		console.log(snakeToAdd);
+	}
 	render() {
 		return(
 			<React.Fragment>
 				<h2> Snake Container </h2>
 				<SnakeList snakes={this.state.snakes}/>
-				<NewSnakeForm />
+				<NewSnakeForm createSnake={this.createSnake}/>
 			</React.Fragment>
 		)
 	}
