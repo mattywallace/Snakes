@@ -7,14 +7,18 @@ export default class SnakeContainer extends Component {
 			snakes:[]
 		}
 	}
+	
 	componentDidMount(){
 		this.getSnakes()
 	}
+
 	
 	getSnakes = async () => {
 		try {
 			const url = process.env.REACT_APP_API_URL + "/api/v1/snakes/"
-			const snakesResponse = await fetch(url)
+			const snakesResponse = await fetch(url, {
+				credentials: 'include'
+			})
 			console.log('trying to fetch data form:');
 			console.log(url);
 			console.log('here is the response from the fetch call:');

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SnakeContainer from './SnakeContainer'
 import LoginRegisterForm from './LoginRegisterForm'
 import './App.css';
+import Header from './Header'
 
 
 export default class App extends Component {
@@ -40,6 +41,12 @@ export default class App extends Component {
 			console.log('registerResponse', registerResponse);
 			const registerJson = await registerResponse.json()
 			console.log("registerJson", registerJson);
+			if(registerResponse.status === 201) {
+				this.setState({
+					loggedIn: true,
+					loggedInUserEmail: registerJson.data.email
+				})
+			}
 		} catch (err) {
 			console.log(registerInfo);
 			console.error('Error tryin to register with API');
@@ -47,16 +54,47 @@ export default class App extends Component {
 		}
 	}
 
-	login = (loginInfo) => {
-		console.log('login() in app.js called with the following info', loginInfo);
+	login = async (loginInfo) => {
+		const url = process.env.REACT_APP_API_URL + '/api/v1/users/login'
+		try {
+			const loginResponse = await fetch(url, {
+				credentials:"include",
+				method:'POST',
+				body: JSON.stringify(loginInfo),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+			console.log("loginResponse", loginResponse);
+			const loginJson = await loginResponse.json()
+			console.log(loginJson, ' loginjson');
+			if(loginResponse.status === 200) {
+				this.setState({
+					loggedIn: true,
+					loggedInUserEmail: loginJson.data.email
+				})
+			}
+		} catch(error){
+			console.error('error trying to log in');
+			console.error(error)
+		}
+
 	}
+	
+	logout = () => {
+		console.log("logout");
+	}
+
 	render() {
   	return (
    	 <div className="App">
    	 {
    	 	this.state.loggedIn
    	 	?
-   	 	<SnakeContainer />
+   	 	<React.Fragment>
+   	 		<Header logout={this.logout} />
+   	 		<SnakeContainer />
+   	 	</React.Fragment> 
    	 	:
    	 	<LoginRegisterForm
    	 		login={this.login}
