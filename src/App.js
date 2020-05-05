@@ -103,6 +103,7 @@ export default class App extends Component {
    	 		switchForm={this.switchForm}
    	 	 />
    	 }
+   		
     </div>
   );
  }

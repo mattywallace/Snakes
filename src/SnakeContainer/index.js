@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import SnakeList from '../SnakeList'
 
 export default class SnakeContainer extends Component {
 	constructor(props) {
@@ -32,7 +33,10 @@ export default class SnakeContainer extends Component {
 	}
 	render() {
 		return(
-			<h2> Snake Container </h2>
+			<React.Fragment>
+				<h2> Snake Container </h2>
+				<SnakeList />
+			</React.Fragment>
 		)
 	}
 }
