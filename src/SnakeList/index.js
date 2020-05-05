@@ -25,6 +25,16 @@ export default function SnakeList(props) {
 						{snake.added_by.username}
 					</Card.Description>
 				</Card.Content>
+				<Card.Content textAlign={"center"}>	
+					<Button
+						basic
+						color='red'
+						onClick={ () => props.deleteSnake(snake.id) }
+					>
+						Delete {snake.species}
+					</Button>
+				</Card.Content>
+
 			</Card>
 
 		)
@@ -37,13 +47,6 @@ export default function SnakeList(props) {
 	)
 
 }
-					// <Button
-					// 	basic
-					// 	color='red'
-					// 	onClick={ () => props.deleteSnake(snake.id) }
-					// >
-					// 	Delete {snake.species}
-					// </Button>
 					// <Button
 					// 	basic
 					// 	color='green'

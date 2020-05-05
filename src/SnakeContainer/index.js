@@ -35,6 +35,26 @@ export default class SnakeContainer extends Component {
 			console.error("error retrieving snake data err")
 		}
 	}
+	deleteSnake = async (idOfSnakeToDelete) => {
+		const url = process.env.REACT_APP_API_URL +"/api/v1/snakes/" + idOfSnakeToDelete
+		try {
+			const deleteSnakeResponse = await fetch(url, {
+				credentials: 'include',
+				method: "DELETE"
+			})
+			console.log("deleteSnakeResponse");
+			const deleteSnakeJson = await deleteSnakeResponse.json()
+			if (deleteSnakeResponse.status === 200) {
+				this.setState({
+					snakes: this.state.snakes.filter(snake => snake.id != idOfSnakeToDelete)
+				})
+			}
+		} catch (error) {
+			console.error('error deleting snake');
+			console.error(error);
+		}
+	}
+	
 	createSnake = async (snakeToAdd) => {
 		console.log('here is the snake you are tyring to add');
 		console.log(snakeToAdd);
@@ -61,12 +81,17 @@ export default class SnakeContainer extends Component {
 			console.error(error)
 		}
 	}
+
+
 	
 	render() {
 		return(
 			<React.Fragment>
 				<h2> Snake Container </h2>
-				<SnakeList snakes={this.state.snakes}/>
+				<SnakeList 
+					snakes={this.state.snakes}
+					deleteSnake={this.deleteSnake}
+					/>
 				<NewSnakeForm createSnake={this.createSnake}/>
 			</React.Fragment>
 		)
